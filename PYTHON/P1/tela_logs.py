@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import scrolledtext, filedialog, messagebox
-
 def abrir_tela_logs(root, abrir_tela_inicial):
     for widget in root.winfo_children():
         widget.destroy()
