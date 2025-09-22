@@ -1,8 +1,7 @@
 import tkinter as tk
 from tkinter import scrolledtext, filedialog, messagebox
-from tela_inicial import abrir_tela_inicial
 
-def abrir_tela_logs(root):
+def abrir_tela_logs(root, abrir_tela_inicial):
     for widget in root.winfo_children():
         widget.destroy()
 
@@ -31,4 +30,4 @@ def abrir_tela_logs(root):
 
     tk.Button(frame_botoes, text="Atualizar", width=15, command=lambda: messagebox.showinfo("Atualizar", "Logs atualizados!")).pack(side=tk.LEFT, padx=5)
     tk.Button(frame_botoes, text="Exportar Logs", width=15, command=exportar_logs).pack(side=tk.LEFT, padx=5)
-    tk.Button(frame_botoes, text="Voltar", width=15, command=lambda: abrir_tela_inicial(root)).pack(side=tk.LEFT, padx=5)
+    tk.Button(frame_botoes, text="Voltar", width=15, command=lambda: abrir_tela_inicial(root, abrir_tela_logs)).pack(side=tk.LEFT, padx=5)
