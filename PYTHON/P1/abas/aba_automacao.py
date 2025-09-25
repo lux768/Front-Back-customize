@@ -1,31 +1,33 @@
 import tkinter as tk
 import os
 import subprocess
-import tkinter as tk
-from tkinter import scrolledtext
+from tkinter import scrolledtext, messagebox
 
 def criar_aba_automacao(notebook, abrir_tela_inicial, caminho_atual):
     frame = tk.Frame(notebook)
     notebook.add(frame, text="Automação")
 
-    tk.Label(frame, text=f"Conteúdo de: {caminho_atual}", font=("Arial", 12)).pack()
-    frame_scripts = tk.Frame(frame)
-    frame_scripts.pack(pady=5)
+    # Configura o grid principal com duas colunas
+    frame.columnconfigure(0, weight=1)
+    frame.columnconfigure(1, weight=1)
+    frame.rowconfigure(0, weight=1)
+
+    # --- Lado Esquerdo: Automação ---
+    frame_esquerda = tk.Frame(frame)
+    frame_esquerda.grid(row=0, column=0, sticky="nsew", padx=10, pady=10)
+    frame_esquerda.columnconfigure(0, weight=1)
+
+    tk.Label(frame_esquerda, text=f"Scripts em: {caminho_atual}", font=("Arial", 12, "bold")).grid(row=0, column=0, sticky="w")
+
+    frame_scripts = tk.Frame(frame_esquerda)
+    frame_scripts.grid(row=1, column=0, sticky="nsew")
 
     def executar_automacao(script_path):
         try:
             subprocess.Popen(["python", script_path])
-            tk.messagebox.showinfo("Automação", f"Automação '{os.path.basename(script_path)}' iniciada!")
+            messagebox.showinfo("Automação", f"Automação '{os.path.basename(script_path)}' iniciada!")
         except Exception as e:
-            tk.messagebox.showerror("Erro", f"Erro ao iniciar automação:\n{e}")
-
-    tk.Label(frame, text="Controle Manual", font=("Arial", 12)).pack(pady=5)
-    frame_botoes_exec = tk.Frame(frame)
-    frame_botoes_exec.pack(pady=5)
-    tk.Button(frame_botoes_exec, text="Iniciar", width=12, command=lambda: tk.messagebox.showinfo("Execução", "Execução manual iniciada.")).pack(side=tk.LEFT, padx=5)
-    tk.Button(frame_botoes_exec, text="Pausar", width=12, command=lambda: tk.messagebox.showinfo("Execução", "Execução manual pausada.")).pack(side=tk.LEFT, padx=5)
-    tk.Button(frame_botoes_exec, text="Parar", width=12, command=lambda: tk.messagebox.showinfo("Execução", "Execução manual parada.")).pack(side=tk.LEFT, padx=5)
-    scrolledtext.ScrolledText(frame, width=45, height=7, state='disabled').pack(padx=10, pady=5)
+            messagebox.showerror("Erro", f"Erro ao iniciar automação:\n{e}")
 
     if not os.path.exists(caminho_atual):
         os.makedirs(caminho_atual)
@@ -51,3 +53,22 @@ def criar_aba_automacao(notebook, abrir_tela_inicial, caminho_atual):
 
         if not pastas and not scripts:
             tk.Label(frame_scripts, text="Nenhuma automação ou pasta encontrada.", fg="red").pack()
+
+    # --- Lado Direito: Controle Manual ---
+    frame_direita = tk.Frame(frame)
+    frame_direita.grid(row=0, column=1, sticky="nsew", padx=10, pady=10)
+    frame_direita.columnconfigure(0, weight=1)
+
+    tk.Label(frame_direita, text="Controle Manual", font=("Arial", 12, "bold")).grid(row=0, column=0, sticky="w")
+
+    frame_botoes_exec = tk.Frame(frame_direita)
+    frame_botoes_exec.grid(row=1, column=0, pady=10)
+
+    tk.Button(frame_botoes_exec, text="Iniciar", width=12,
+              command=lambda: messagebox.showinfo("Execução", "Execução manual iniciada.")).pack(side=tk.LEFT, padx=5)
+    tk.Button(frame_botoes_exec, text="Pausar", width=12,
+              command=lambda: messagebox.showinfo("Execução", "Execução manual pausada.")).pack(side=tk.LEFT, padx=5)
+    tk.Button(frame_botoes_exec, text="Parar", width=12,
+              command=lambda: messagebox.showinfo("Execução", "Execução manual parada.")).pack(side=tk.LEFT, padx=5)
+
+    scrolledtext.ScrolledText(frame_direita, width=45, height=20, state='disabled').grid(row=2, column=0, pady=10, sticky="nsew")
