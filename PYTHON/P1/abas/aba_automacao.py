@@ -4,7 +4,7 @@ import subprocess
 import tkinter as tk
 from tkinter import scrolledtext
 
-def criar_aba_automacao(notebook, abrir_tela_inicial, abrir_tela_logs, caminho_atual):
+def criar_aba_automacao(notebook, abrir_tela_inicial, caminho_atual):
     frame = tk.Frame(notebook)
     notebook.add(frame, text="Automação")
 
@@ -38,11 +38,11 @@ def criar_aba_automacao(notebook, abrir_tela_inicial, abrir_tela_logs, caminho_a
         if caminho_atual != "automacoes":
             pasta_anterior = os.path.dirname(caminho_atual)
             tk.Button(frame_scripts, text=".. (Voltar)", width=30,
-                      command=lambda: abrir_tela_inicial(frame.master.master, abrir_tela_logs, pasta_anterior)).pack(pady=2)
+                      command=lambda: abrir_tela_inicial(frame.master.master, pasta_anterior)).pack(pady=2)
 
         for pasta in pastas:
             tk.Button(frame_scripts, text=f"[Pasta] {pasta}", width=30,
-                      command=lambda p=pasta: abrir_tela_inicial(frame.master.master, abrir_tela_logs, os.path.join(caminho_atual, p))).pack(pady=2)
+                      command=lambda p=pasta: abrir_tela_inicial(frame.master.master, os.path.join(caminho_atual, p))).pack(pady=2)
 
         for script in scripts:
             script_path = os.path.join(caminho_atual, script)
