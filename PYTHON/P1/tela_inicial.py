@@ -28,5 +28,4 @@ def abrir_tela_inicial(root, abrir_tela_logs, caminho_atual="automacoes"):
 
     frame_botoes = tk.Frame(root)
     frame_botoes.pack(pady=10)
-    tk.Button(frame_botoes, text="Ver Logs", width=15, command=lambda: abrir_tela_logs(root, abrir_tela_inicial)).pack(side=tk.LEFT, padx=5)
     tk.Button(frame_botoes, text="Sair", width=15, command=root.destroy).pack(side=tk.LEFT, padx=5)
