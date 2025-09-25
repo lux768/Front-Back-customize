@@ -1,10 +1,10 @@
 import tkinter as tk
 from tkinter import ttk
-from PYTHON.P1.abas.aba_automacao import criar_aba_automacao
+from abas.aba_automacao import criar_aba_automacao
 from abas.aba_dados import criar_aba_dados
 from abas.aba_logs import criar_aba_logs
 
-def abrir_tela_inicial(root, abrir_tela_logs, caminho_atual="automacoes"):
+def abrir_tela_inicial(root, caminho_atual="automacoes"):
     for widget in root.winfo_children():
         widget.destroy()
 
