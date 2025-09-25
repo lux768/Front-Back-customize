@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
-from abas.aba_automacao import criar_aba_automacao
-from abas.aba_download import criar_aba_download
+from PYTHON.P1.abas.aba_automacao import criar_aba_automacao
+from abas.aba_dados import criar_aba_dados
 from abas.aba_logs import criar_aba_logs
 
 def abrir_tela_inicial(root, abrir_tela_logs, caminho_atual="automacoes"):
@@ -14,7 +14,7 @@ def abrir_tela_inicial(root, abrir_tela_logs, caminho_atual="automacoes"):
     notebook.pack(expand=True, fill='both', padx=5, pady=5)
 
     criar_aba_automacao(notebook, abrir_tela_inicial, caminho_atual)
-    criar_aba_download(notebook)
+    criar_aba_dados(notebook)
     criar_aba_logs(notebook)
 
     frame_botoes = tk.Frame(root)

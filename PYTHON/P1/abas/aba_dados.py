@@ -1,17 +1,13 @@
 import tkinter as tk
 from tkinter import filedialog
 
-def criar_aba_relatorios(notebook):
+def criar_aba_dados(notebook):
     frame = tk.Frame(notebook)
-    notebook.add(frame, text="Relatórios")
+    notebook.add(frame, text="Dados")
 
     tk.Label(frame, text="Relatórios Gerados", font=("Arial", 12)).pack(pady=5)
     tk.Label(frame, text="(Aqui você pode exibir gráficos, tabelas, etc.)").pack(pady=5)
     tk.Button(frame, text="Exportar para PDF/Excel", command=lambda: tk.messagebox.showinfo("Relatórios", "Relatório exportado.")).pack(pady=5)
-
-def criar_aba_upload(notebook):
-    frame = tk.Frame(notebook)
-    notebook.add(frame, text="Upload/Download")
 
     def upload_arquivo():
         file_path = filedialog.askopenfilename()

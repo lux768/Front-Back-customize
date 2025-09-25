@@ -1,19 +1,9 @@
 import tkinter as tk
 from tkinter import scrolledtext, filedialog, messagebox
 
-def criar_aba_notificacoes(notebook):
+def criar_aba_logs(notebook):
     frame = tk.Frame(notebook)
-    notebook.add(frame, text="Notificações")
-
-    tk.Label(frame, text="Notificações", font=("Arial", 12)).pack(pady=5)
-    notificacoes_area = scrolledtext.ScrolledText(frame, width=45, height=7, state='normal')
-    notificacoes_area.pack(padx=10, pady=5)
-    notificacoes_area.insert(tk.END, "Nenhuma notificação no momento.\n")
-    notificacoes_area.config(state='disabled')
-
-def criar_aba_historico(notebook):
-    frame = tk.Frame(notebook)
-    notebook.add(frame, text="Histórico/Logs")
+    notebook.add(frame, text="Logs")
 
     tk.Label(frame, text="Logs da Automação", font=("Arial", 14)).pack(pady=10)
 
@@ -40,3 +30,9 @@ def criar_aba_historico(notebook):
 
     tk.Button(frame_botoes, text="Atualizar", width=15, command=lambda: messagebox.showinfo("Atualizar", "Logs atualizados!")).pack(side=tk.LEFT, padx=5)
     tk.Button(frame_botoes, text="Exportar Logs", width=15, command=exportar_logs).pack(side=tk.LEFT, padx=5)
+
+    tk.Label(frame, text="Notificações", font=("Arial", 12)).pack(pady=5)
+    notificacoes_area = scrolledtext.ScrolledText(frame, width=45, height=7, state='normal')
+    notificacoes_area.pack(padx=10, pady=5)
+    notificacoes_area.insert(tk.END, "Nenhuma notificação no momento.\n")
+    notificacoes_area.config(state='disabled')
