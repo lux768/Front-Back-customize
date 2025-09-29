@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Explorer - Navegador de Arquivos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📁 File Explorer</h1>
+            <div class="controls">
+                <button id="btnNewFolder" class="btn btn-primary">Nova Pasta</button>
+                <button id="btnUpload" class="btn btn-secondary">Upload</button>
+                <input type="file" id="fileInput" multiple style="display: none;">
+            </div>
+        </header>
+ 
+        <nav class="breadcrumb">
+            <span id="currentPath">/</span>
+        </nav>
+ 
+        <div class="file-list-container">
+            <table class="file-table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Tamanho</th>
+                        <th>Modificado</th>
+                        <th>Permissões</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="fileList">
+                    <!-- Lista de arquivos será carregada aqui -->
+                </tbody>
+            </table>
+        </div>
+ 
+        <div id="loading" class="loading">Carregando...</div>
+        <div id="error" class="error" style="display: none;"></div>
+    </div>
+ 
+    <!-- Modal para nova pasta -->
+    <div id="folderModal" class="modal">
+        <div class="modal-content">
+            <h3>Nova Pasta</h3>
+            <input type="text" id="folderName" placeholder="Nome da pasta">
+            <div class="modal-actions">
+                <button id="btnCreateFolder" class="btn btn-primary">Criar</button>
+                <button id="btnCancelFolder" class="btn btn-secondary">Cancelar</button>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- Modal para visualizar arquivo -->
+    <div id="fileModal" class="modal">
+        <div class="modal-content large">
+            <h3 id="fileName">Visualizar Arquivo</h3>
+            <pre id="fileContent"></pre>
+            <div class="modal-actions">
+                <button id="btnCloseFile" class="btn btn-secondary">Fechar</button>
+            </div>
+        </div>
+    </div>
+ 
+    <script src="..\..\script.js"></script>
+</body>
+</html>
+ 
