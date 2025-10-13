@@ -78,14 +78,11 @@ function getPermissions(stats) {
 // Rotas da API
  
 // Listar conteúdo do diretório
-app.get('/', (req, res) => {
-  res.redirect('Wamp');
+app.get('/api/files', (req, res) => {
   const { path: dirPath = './' } = req.query;
-  
   try {
     const files = listDirectory(dirPath);
     const currentDir = path.resolve(dirPath);
-    
     res.json({
       success: true,
       currentPath: currentDir,
